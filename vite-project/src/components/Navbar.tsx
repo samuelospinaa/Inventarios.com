@@ -141,8 +141,11 @@ export function Inputs() {
         style={inputStyles}
         className="form-select"
         aria-label="Default select example"
+        defaultValue=""
       >
-        <option selected>Unidad </option>
+        <option value="" disabled>
+          Unidad
+        </option>
         <option value="1">Kg</option>
         <option value="2">Cajas</option>
         <option value="3">Bolsas</option>
