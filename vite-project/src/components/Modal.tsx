@@ -1,42 +1,50 @@
 type ModalProps = {
   estado: boolean;
   cambiarEstado: React.Dispatch<React.SetStateAction<boolean>>;
+  mensaje?: string;
 };
-function Modal({ estado, cambiarEstado }: ModalProps) {
+
+function Modal({ estado, cambiarEstado, mensaje }: ModalProps) {
   return (
     <>
       {estado && (
-        <div className="modal" tabIndex={0}>
+        <div
+          className={`modal fade ${estado ? "show" : ""}`}
+          tabIndex={-1}
+          role="dialog"
+          style={{ display: estado ? "block" : "none" }}
+        >
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title">Guardar gastos</h5>
+                <h5 className="modal-title">Confirmación</h5>
                 <button
                   type="button"
                   className="btn-close"
-                  data-bs-dismiss="modal"
+                  onClick={() => cambiarEstado(false)}
                   aria-label="Close"
                 ></button>
               </div>
               <div className="modal-body">
-                <p>{}</p>
-                <ul>
-                  {/* {ModifiedItems.map((item) => (
-                  <li key={item}>{item}</li>
-                ))} */}
-                </ul>
+                <p>{mensaje || "¿Deseas continuar?"}</p>
               </div>
               <div className="modal-footer">
                 <button
-                  onClick={() => cambiarEstado(false)}
                   type="button"
                   className="btn btn-secondary"
-                  data-bs-dismiss="modal"
+                  onClick={() => cambiarEstado(false)}
                 >
-                  Editar
+                  Cancelar
                 </button>
-                <button type="button" className="btn btn-primary">
-                  Enviar
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => {
+                    cambiarEstado(false);
+                    console.log("Informe enviado");
+                  }}
+                >
+                  Confirmar
                 </button>
               </div>
             </div>
@@ -46,5 +54,6 @@ function Modal({ estado, cambiarEstado }: ModalProps) {
     </>
   );
 }
+
 
 export default Modal;

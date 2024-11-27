@@ -60,7 +60,11 @@ function App() {
       <button onClick={abrirCerrarModal} className="btn btn-primary">
         Enviar Informe
       </button>
-      <Modal estado={modal} cambiarEstado={setModal} />
+      <Modal
+        estado={modal}
+        cambiarEstado={setModal}
+        mensaje="¿Estás seguro de enviar el informe?"
+      />
     </div>
   );
 }
